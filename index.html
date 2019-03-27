@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+        <header>
+            <h1 >
+                Pick A Number
+            </h1>
+        
+                <section>
+            
+                        <input type="number" name="quantity" min="0" max="9999"><br>
+                        
+                        <p id="fact"></p>
+                        <p><a href="" id="url" target="_blank">Number</a></p>
+                        <button onclick="chooseANumber()">Click Me For A Fact</button>
+                
+                </section>
+                
+            </header>
+        
+        
+            <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+          </script>
+        
+        
+            <script src="main.js">
+            
+            function chooseANumber() {
+      
+            let url = "http://numbersapi.com/#10/math";
+                $.ajax( {
+                    url: url,
+                    method: 'get',
+                    success: function (data) {
+                      
+                        console.log(data);
+                        $('#url').attr('href', data.url);
+                        $('#fact').text(data.value);
+                       
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                    });
+                    }
+                    $(document).ready(function () {
+                        chooseANumber();
+                        $('button').on('click', chooseANumber());
+                    
+                });
+            </script>
+
+</body>
+</html>
